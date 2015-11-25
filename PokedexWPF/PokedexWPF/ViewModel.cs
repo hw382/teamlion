@@ -21,6 +21,10 @@ namespace PokedexWPF
         private ICommand _saveNewPokeCommand;
         public ICommand saveNewPokeCommand
         {
+            if (true)
+	{
+		 
+	}
             get
             {
                 if (_saveNewPokeCommand == null)
