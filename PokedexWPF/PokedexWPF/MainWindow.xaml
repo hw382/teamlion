@@ -6,6 +6,9 @@
     <Window.DataContext>
         <viewModel:ViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <viewModel:ViewModel x:Key="ScreenViewModel"/>
+    </Window.Resources>
     <StackPanel>
         <TextBlock TextWrapping="Wrap"><Run Text="Welcome to your Pokedex!"/><LineBreak/><Run Text="Please add more Pokemon to your deck using the form below."/><LineBreak/><Run Text="You can choose to catch, remove or edit your Pokemons."/><LineBreak/></TextBlock>
         <Grid Margin="5, 0, 0, 0">
@@ -42,20 +45,14 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Content="Enter name of new Pokemon" Margin="5"/>
-            <TextBox Grid.Column="0" Grid.Row="1" Name="newPokeN" Text="" 
-                     Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxError}" Margin="5">
-                <TextBox.Text>
-                    <Binding Path="NameCheck" Source="{StaticResource ods}" UpdateSourceTrigger="PropertyChanged">
-                        <Binding.ValidationRules>
-                            <c:NameNotNullRule Min="1" Max="25"/>
-                        </Binding.ValidationRules>
-                    </Binding>
-
-                </TextBox.Text>
+            <TextBox Grid.Column="0" Grid.Row="1" Name="newPokeN" Margin="5" MaxLength="25" >
             </TextBox>
             <Label Grid.Column="0" Grid.Row="3" Name="pokeLabel1" Margin="5"/>
             <Label Grid.Column="1" Content="Select type for new Pokemon" Margin="5"/>
-            <ComboBox Grid.Column="1" Grid.Row="1" Name="newPokeT" Margin="5"/>
+            <ComboBox Grid.Column="1" Grid.Row="1" Name="newPokeT" Margin="5" 
+                      ItemsSource="{Binding Types, Source={StaticResource ScreenViewModel}}"
+                      DisplayMemberPath="changeType" SelectedItem="{Binding selectedType, Source={StaticResource ScreenViewModel}, Mode=TwoWay}">
+            </ComboBox>
             <Button Grid.ColumnSpan="2" Grid.Row="2" Content="Save" Command="{Binding saveNewPokeCommand}" Margin="5"/>
             <Label Grid.Column="1" Grid.Row="3" Name="pokeLabel2" Margin="5"/>
         </Grid>
