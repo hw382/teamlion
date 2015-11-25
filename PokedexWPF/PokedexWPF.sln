@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokedexWPF", "PokedexWPF\PokedexWPF.csproj", "{15CC21AC-C1F7-4DDB-B27A-100CD394CBDF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokedexTest", "PokedexTest\PokedexTest.csproj", "{B9E1D5B7-CEE2-4E0F-B203-CE585233C2B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{15CC21AC-C1F7-4DDB-B27A-100CD394CBDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15CC21AC-C1F7-4DDB-B27A-100CD394CBDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15CC21AC-C1F7-4DDB-B27A-100CD394CBDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9E1D5B7-CEE2-4E0F-B203-CE585233C2B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9E1D5B7-CEE2-4E0F-B203-CE585233C2B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9E1D5B7-CEE2-4E0F-B203-CE585233C2B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9E1D5B7-CEE2-4E0F-B203-CE585233C2B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

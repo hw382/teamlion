@@ -18,16 +18,18 @@ namespace PokedexWPF
         }
 
 
+
         public ViewModel()
         {
             pokedex = new ObservableCollection<Pokemon>()
             {                
-                new Pokemon("Charmander", "Fire"),
-                new Pokemon("Squirtle", "Water"),
-                new Pokemon("Bulbasaur", "Grass")
-              
+                //new Pokemon("Charmander", "Fire"),
+                //new Pokemon("Squirtle", "Water"),
+                //new Pokemon("Bulbasaur", "Grass")              
             };
         }
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -39,5 +41,7 @@ namespace PokedexWPF
             }
         }
 
+
+      
     }
 }
