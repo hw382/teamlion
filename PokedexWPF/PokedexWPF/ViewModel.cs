@@ -11,6 +11,28 @@ namespace PokedexWPF
 {
     public class ViewModel : INotifyPropertyChanged
     {
+        private string _pokeName;
+        public string pokeName
+        {
+            get { return _pokeName; }
+            set { _pokeName = value; }
+        }
+
+        private string _pokeType;
+        public string pokeType
+        {
+            get { return _pokeType; }
+            set { _pokeType = value; }
+        }
+
+        private Pokemon _pokemon;
+        public Pokemon pokemon
+        {
+            get { return _pokemon; }
+            set { _pokemon = value; }
+        }
+        
+
         private ObservableCollection<Pokemon> _listOfPokemon;
         public ObservableCollection<Pokemon> listOfPokemon
         {
@@ -22,33 +44,57 @@ namespace PokedexWPF
         public Pokedex pokedex
         {
             get { return _pokedex; }
-            set { _pokedex = value; }
+            set { _pokedex = value; OnPropertyChanged("pokedex"); }
         }
 
-
-        private ICommand _RemovePokemonCommand;
-        public ICommand addPokemonCommandommand
+        private List<string> _ListOfTypes;
+        public List<string> ListOfTypes
         {
-            get 
-            {
-                if (_RemovePokemonCommand == null) 
-                {
-                    _RemovePokemonCommand = new Command(RemovePokemon, CanRemovePokemon);
-                }
-                return _RemovePokemonCommand; 
-            }
-            set { _RemovePokemonCommand = value; }
+            get { return _ListOfTypes; }
+            set { _ListOfTypes = value; }
         }
+
+        private ICommand _removePokemonCommand;
+        public ICommand removePokemonCommand
+        {
+            get
+            {
+                if (_removePokemonCommand == null)
+                {
+                    _removePokemonCommand = new Command(RemovePokemon, CanRemovePokemon);
+                }
+                return _removePokemonCommand;
+            }
+            set { _removePokemonCommand = value; }
+        }
+
+        private ICommand _addPokemonCommand;
+        public ICommand addPokemonCommand
+        {
+            get
+            {
+                if (_addPokemonCommand == null)
+                {
+                    _addPokemonCommand = new Command(AddPokemon, CanAddPokemon);
+                }
+                return _addPokemonCommand;
+            }
+            set { _addPokemonCommand = value; }
+        }       
         
-        public ViewModel(Pokedex pokedex)
+        public ViewModel()
         {
             this.pokedex = pokedex;
+            ListOfTypes = new List<string>() 
+            {
+                "Electric","Fire","Grass","Water","Psychic"            
+            };
 
             listOfPokemon = new ObservableCollection<Pokemon>()
-            {                
-                //new Pokemon("Charmander", "Fire"),
-                //new Pokemon("Squirtle", "Water"),
-                //new Pokemon("Bulbasaur", "Grass")              
+            {
+                new Pokemon("Charmander", "Fire"),
+                new Pokemon("Squirtle", "Water"),
+                new Pokemon("Bulbasaur", "Grass")              
             };
         }
 
@@ -59,9 +105,19 @@ namespace PokedexWPF
 
         public void RemovePokemon()
         {
-            pokedex.DeletePokemon();
+            listOfPokemon.Remove(pokemon);
         }
 
+        private bool CanAddPokemon()
+        {
+            return true;
+        }
+
+        private void AddPokemon()
+        {
+            listOfPokemon.Add(new Pokemon(pokeName, pokeType));
+            //pokedex.AddPokemon();
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

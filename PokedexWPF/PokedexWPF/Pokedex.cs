@@ -16,11 +16,15 @@ namespace PokedexWPF
             set { _listOfPokemon = value; }
         }
 
-        MainWindow mw;
+        private string _pokeName;
+        public string pokeName
+        {
+            get { return _pokeName; }
+            set { _pokeName = value; }
+        }        
 
         public Pokedex()
         {
-            mw = new MainWindow();
             listOfPokemon = new ObservableCollection<Pokemon>();
         }
 
@@ -29,15 +33,15 @@ namespace PokedexWPF
             return listOfPokemon;
         }
 
-        public ObservableCollection<Pokemon> AddPokemon(Pokemon pokemon)
+        public ObservableCollection<Pokemon> AddPokemon()
         {
-            listOfPokemon.Add(pokemon);
+            listOfPokemon.Add(new Pokemon(pokeName, "sssss"));
             return listOfPokemon;
         }
 
-        public ObservableCollection<Pokemon> DeletePokemon()
-        {
-           // listOfPokemon.Remove();
+        public ObservableCollection<Pokemon> DeletePokemon(Pokemon pokemon)
+        {           
+           // listOfPokemon.Remove(poke);
             return listOfPokemon;
         }
     }
