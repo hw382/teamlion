@@ -18,53 +18,34 @@ namespace PokedexWPF
             set { _listOfPokemon = value; OnPropertyChanged("listOfPokemon"); }
         }
 
-        private Pokedex _pokedex;
-        public Pokedex pokedex
+        private ICommand _saveNewPokeCommand;
+        public ICommand saveNewPokeCommand
         {
-            get { return _pokedex; }
-            set { _pokedex = value; }
-        }
-
-
-        private ICommand _RemovePokemonCommand;
-        public ICommand addPokemonCommandommand
-        {
-            get 
+            get
             {
-                if (_RemovePokemonCommand == null) 
+                if (_saveNewPokeCommand == null)
                 {
-                    _RemovePokemonCommand = new Command(RemovePokemon, CanRemovePokemon);
+                    _saveNewPokeCommand = new Command(SaveNewPokemon, CanSaveNewPokemon);
                 }
-                return _RemovePokemonCommand; 
-            }
-            set { _RemovePokemonCommand = value; }
-        }
-        
-        public ViewModel(Pokedex pokedex)
-        {
-            this.pokedex = pokedex;
 
+                return _saveNewPokeCommand;
+            }
+            set { _saveNewPokeCommand = value; }
+        }
+
+        public ViewModel()
+        {
             listOfPokemon = new ObservableCollection<Pokemon>()
             {                
-                //new Pokemon("Charmander", "Fire"),
-                //new Pokemon("Squirtle", "Water"),
-                //new Pokemon("Bulbasaur", "Grass")              
+                new Pokemon("Charmander", "Fire"),
+                new Pokemon("Squirtle", "Water"),
+                new Pokemon("Bulbasaur", "Grass")              
             };
         }
 
-        public bool CanRemovePokemon()
-        {
-            return true;
-        }
-
-        public void RemovePokemon()
-        {
-            pokedex.DeletePokemon();
-        }
 
 
         public event PropertyChangedEventHandler PropertyChanged;
-
         private void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
@@ -72,5 +53,24 @@ namespace PokedexWPF
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+
+
+        public bool CanSaveNewPokemon()
+        {
+            //if (newPokeN != null && newPokeT != null)
+            if (string.IsNullOrEmpty())
+            {
+                return true;
+            }
+
+        }
+
+        public void SaveNewPokemon()
+        {
+
+        }
+
+
     }
 }
