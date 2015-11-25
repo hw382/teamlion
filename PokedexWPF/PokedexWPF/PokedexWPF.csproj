@@ -56,7 +56,6 @@
     <Compile Include="Command.cs" />
     <Compile Include="Pokedex.cs" />
     <Compile Include="Pokemon.cs" />
-    <Compile Include="PokemonTypes.cs" />
     <Compile Include="ViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
