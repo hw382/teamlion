@@ -5,23 +5,46 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace PokedexWPF
 {
     public class ViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<Pokemon> _pokedex;
-        public ObservableCollection<Pokemon> pokedex
+        private ObservableCollection<Pokemon> _listOfPokemon;
+        public ObservableCollection<Pokemon> listOfPokemon
+        {
+            get { return _listOfPokemon; }
+            set { _listOfPokemon = value; OnPropertyChanged("listOfPokemon"); }
+        }
+
+        private Pokedex _pokedex;
+        public Pokedex pokedex
         {
             get { return _pokedex; }
-            set { _pokedex = value; OnPropertyChanged("pokemon"); }
+            set { _pokedex = value; }
         }
 
 
-
-        public ViewModel()
+        private ICommand _RemovePokemonCommand;
+        public ICommand addPokemonCommandommand
         {
-            pokedex = new ObservableCollection<Pokemon>()
+            get 
+            {
+                if (_RemovePokemonCommand == null) 
+                {
+                    _RemovePokemonCommand = new Command(RemovePokemon, CanRemovePokemon);
+                }
+                return _RemovePokemonCommand; 
+            }
+            set { _RemovePokemonCommand = value; }
+        }
+        
+        public ViewModel(Pokedex pokedex)
+        {
+            this.pokedex = pokedex;
+
+            listOfPokemon = new ObservableCollection<Pokemon>()
             {                
                 //new Pokemon("Charmander", "Fire"),
                 //new Pokemon("Squirtle", "Water"),
@@ -29,6 +52,15 @@ namespace PokedexWPF
             };
         }
 
+        public bool CanRemovePokemon()
+        {
+            return true;
+        }
+
+        public void RemovePokemon()
+        {
+            pokedex.DeletePokemon();
+        }
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -40,8 +72,5 @@ namespace PokedexWPF
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-
-
-      
     }
 }

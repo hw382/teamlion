@@ -15,9 +15,12 @@ namespace PokedexWPF
             get { return _listOfPokemon; }
             set { _listOfPokemon = value; }
         }
-        
+
+        MainWindow mw;
+
         public Pokedex()
         {
+            mw = new MainWindow();
             listOfPokemon = new ObservableCollection<Pokemon>();
         }
 
@@ -29,6 +32,12 @@ namespace PokedexWPF
         public ObservableCollection<Pokemon> AddPokemon(Pokemon pokemon)
         {
             listOfPokemon.Add(pokemon);
+            return listOfPokemon;
+        }
+
+        public ObservableCollection<Pokemon> DeletePokemon()
+        {
+           // listOfPokemon.Remove();
             return listOfPokemon;
         }
     }
